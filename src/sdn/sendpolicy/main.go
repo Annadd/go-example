@@ -160,20 +160,22 @@ func callFlow(flow ControllerFlow, operation string) {
 }
 
 func main() {
-	dpid := "00:00:00:10:a0:2f:c0:93"
-	mcGroup := makeMCGroup(1, dpid)
-	member := make([]int, 1)
-	member = append(member, mcGroup.GroupID)
-	rwGroup := makeRWGroup(1, dpid, "mc", member)
-	callGroup(mcGroup, "add")
-	callGroup(rwGroup, "add")
+	// dpid := "00:00:00:10:a0:2f:c0:93"
+	// mcGroup := makeMCGroup(1, dpid)
+	// member := make([]int, 1)
+	// member = append(member, mcGroup.GroupID)
+	// rwGroup := makeRWGroup(1, dpid, "mc", member)
+	// callGroup(mcGroup, "add")
+	// callGroup(rwGroup, "add")
 
-	host := "192.168.3.58:1993"
+	//192.168.2.220:1993/matrix/snapshot
+	host := "192.168.2.220:1993"
 	url := "http://" + host + "/matrix/snapshot"
 	buf, err := ioutil.ReadFile("C:\\Users\\Administrator\\Desktop\\snapshot.json")
 	if err != nil {
 		fmt.Println(err)
 	}
+	fmt.Println(string(buf))
 
 	resp, err := http.Post(url, string(buf), nil)
 	if err != nil {
